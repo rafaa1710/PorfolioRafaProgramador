@@ -1,23 +1,61 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import '@fontsource-variable/onest';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Portfolio de Rafael Programador</title>
+    <!-- FAVICON -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <!-- (icono navegador) -->
+    <link rel="icon" href="/avatar.png" type="image/svg+xml" />
+  </head>
+
+  <body>
+    <!-- Fondo, SOLO fondo -->
+    <div class="bg" aria-hidden="true"></div>
+
+    <!-- Contenido normal (scrolleable) -->
+    <Header />
+    <main class="page">
+      <slot />
+    </main>
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  :root { color-scheme: dark; }
+
+  html {
+    font-family: "Onest Variable", system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #050505;
+    margin: 0;
+    
+  }
+
+  .page{
+    min-height: 100vh;
+    padding: 6rem 1.25rem;
+  }
+
+  .bg{
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(125% 125% at 50% 10%, #000 40%, #63e 100%);
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{
+      scroll-behavior: auto;
+    }
+  }
 </style>

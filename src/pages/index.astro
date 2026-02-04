@@ -1,11 +1,80 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Badge from '../components/Badge.astro';
+import '../styles/global.css';
+import GitHub from '../icons/GitHub.astro';
+import Linkedin from '../icons/Linkedin.astro';
+import SocialPills from '../components/SocialPills.astro';
+import Mail from '../icons/Mail.astro';
+import Instagram from '../icons/Instagram.astro';
+import Experience from '../components/Experience.astro';
+import SectionContainer from '../icons/SectionContainer.astro';
+import Briefcase from '../icons/Briefcase.astro';
+import Footer from '../components/Footer.astro';
+import Code from '../icons/Code.astro';
+import Project from '../components/Project.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Portfolio de Rafa Desarrollador y programador de Software y Web  ">
+	
+		<main class="px-6">
+			<SectionContainer>
+
+				<!-- La imagen puedo ponerla en el header también -->
+				<img class="rounded-full w-12 h-12 mb-4" src="/fotoProg2.jpg" alt="rafa photo">
+				<h1 class="text-white  text-4xl md:text-4xl text-5xl font-bold flex  flex-row gap-x-4 pb-6 lg:pb-10">Hey soy Rafa 
+					<div class="justify-center items-center"><Badge> 
+						<a href="https://www.linkedin.com/in/rafael-garcia-rgc-677988153/"target="_blank">Disponible para trabajar</a></Badge>
+					</div>
+				</h1>
+				<h2 class="text-xl lg:text-2xl text-wrap max-w-[700px]"> 
+					<span class="text-yellow-200/90"> Desarrollador fullstack de aplicaciones</span>
+					, natural de Córdoba y con base en Málaga, España. 
+					Soy Técnico Superior en Desarrollo de Aplicaciones Multiplataforma y, en este mi primer portfolio, vengo a 
+					presentar algunos de los trabajos y proyectos que he realizado hasta ahora.  
+					Me especializo en diseñar, construir y desarrollar aplicaciones web  y aplicaciones móviles completas, combinando 
+					interfaces modernas con arquitecturas backend robustas, he trabajado con sistemas CRM y ERP para un gobierno autonómico. Disfruto resolviendo problemas 
+					técnicos, aprendiendo nuevas tecnologías y creando productos digitales útiles, escalables y fáciles de usar.
+				</h2>
+				<br>
+				<nav class="flex gap-4 mt-8 flex-wrap">
+					<SocialPills href="https://www.linkedin.com/in/rafael-garcia-rgc-677988153/">
+						<Linkedin class="w-6 h-6" />Linkedin
+					</SocialPills>
+					<SocialPills href="https://github.com/rafaa1710">
+						<GitHub class="w-6 h-6" />GitHub
+					</SocialPills>
+					<SocialPills >
+						<Mail class="w-6 h-6" />rafaprogramador17
+					</SocialPills>
+					<SocialPills href="https://www.instagram.com/rafappcrea/">
+						<Instagram class="w-6 h-6" />rafappCrea
+					</SocialPills>
+				</nav>
+			</SectionContainer>
+
+			<SectionContainer id="experiencia">
+				<h2 class="text-3xl font-semibold mb-3 flex gap-x-2">
+					<Briefcase class="size-7" />
+					Experiencia Laboral
+				</h2>
+				<Experience />
+			</SectionContainer>
+
+			<SectionContainer id="proyectos">
+				<h2 class="text-3xl font-semibold mb-10 flex gap-x-2"><Code class="size-7" />Proyectos Destacados</h2>
+				<!-- Aquí van los proyectos -->
+				<Project />
+			</SectionContainer>
+			<br>
+
+			<footer class="px-6 mt-32">
+				<Footer />
+			</footer>
+		</main>
 </Layout>
