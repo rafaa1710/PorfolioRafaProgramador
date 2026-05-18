@@ -1,0 +1,59 @@
+---
+const FORMACION = [
+  {
+    title: "Formación Ciberseguridad de Google",
+    date: "Abril 2026",
+    description:
+      "Cuento con formación en Ciberseguridad de Google, donde he adquirido conocimientos en protección de datos, gestión de riesgos y respuesta a incidentes de seguridad. He trabajado en la implementación de medidas de seguridad en entornos digitales y en la concienciación sobre buenas prácticas de ciberseguridad.",
+      
+  },
+  {
+    title: "Formación CRM Salesforce" ,
+    date: "Marzo 2026",
+    description:
+      "Cuento con formación en Salesforce como Administrator y Developer Intermediate, con experiencia en personalización de entornos CRM, automatización de procesos mediante Flow Builder, gestión de usuarios, modelado de datos y desarrollo de soluciones orientadas a negocio dentro de la plataforma Salesforce.",
+      link: "https://trailhead.salesforce.com/es-MX/users/vop1arxopazax3jnko/trailmixes/admin-intermediate",
+  },
+  
+  {
+    title: "Formación Grado Superior Desarrollo de Aplicaciones Multiplataforma ",
+    date: "Septiembre 2024 - Junio 2026",
+    description:
+      "Formación técnica orientada al desarrollo de sistemas y backend, trabajando con Java, Python, SQL y Git. Durante el ciclo he desarrollado lógica de negocio, gestión de bases de datos y servicios que simulan entornos profesionales reales, he desarrollado plataformas de gestión empresarial(ERP) y gestión de clientes(CRM), aplicando buenas prácticas de programación y control de versiones.",
+  },
+];
+---
+
+<ol class="relative border-s border-default">
+  {
+    FORMACION.map((item) => (
+      <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-neutral-quaternary rounded-full mt-1.5 -start-1.5 border border-buffer"></div>
+
+        <time class="text-sm text-body">
+          {item.date}
+        </time>
+
+        <h3 class="text-lg font-semibold text-yellow-200 my-2">
+          {item.title}
+        </h3>
+
+        <p class="text-body">
+          {item.description}
+        </p>
+
+        {item.link && (
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-white text-black border border-neutral-300 hover:bg-neutral-400 hover:border-neutral-500 hover:text-black focus:ring-4 focus:ring-neutral-400
+            shadow-sm font-medium rounded-full text-sm p-5 py-2 transition-colors duration-200"
+          >
+            Saber más
+          </a>
+        )}
+      </li>
+    ))
+  }
+</ol>
