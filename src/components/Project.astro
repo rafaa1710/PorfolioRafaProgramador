@@ -80,22 +80,12 @@ const PROJECTS = [
     images: [`${base}sge1.jpg`,
               `${base}sge2.jpg`,
               `${base}sge3.jpg`,
-              `${base}sge4.jpg`],
+              `${base}sge4.jpg`,
+              `${base}sge5.jpg`,
+            ],
     tags: [TAGS.PHP, TAGS.ANGULAR, TAGS.MYSQL, TAGS.TYPESCRIPT],
   },
-  {
-    id: "gestionpeliculas",
-    title: "Aplicación Gestión de Películas",
-    description: "Esta Aplicación fue creada para que un usuario una vez registrado gestione sus propias películas en su cuenta, así como informarse de las última novedades del cine y agregarlas a su lista de favoritos, obteniendo la información directamente desde una API externa en lugar de una base de datos propia. Para el usuario administrador, desde el menú, en gestión de usuarios puede gestionar los usuarios registrados, visualizar, editar y eliminar, un usuario no administrador no le aparece esta opción. En esta aplicación implemento gestión de tokens de autenticación y muestro el usuario activo en la UI junto al botón de cierre de sesión. Asimismo, aplico un delay intencional en el flujo de login para dificultar ataques de fuerza bruta y reforzar la seguridad del sistema.",
-    link: "https://github.com/rafaa1710/proyecto-uno",
-    gitHub: "https://github.com/rafaa1710/proyecto-uno",
-    images: [ `${base}gestionPelis1.jpg`,
-              `${base}pelis2.jpg`,
-              `${base}gestionPelis3.jpg`,
-              `${base}gestionPelis4.jpg`
-    ], 
-    tags: [TAGS.ANGULAR,  TAGS.PHP, TAGS.TYPESCRIPT, TAGS.MYSQL],
-  }
+  
   
 ];
 ---
@@ -125,7 +115,7 @@ const PROJECTS = [
 
       <div class="relative w-full max-w-3xl mx-auto">
 
-  <div class="carousel-container relative w-full max-w-3xl mx-auto overflow-hidden rounded-2xl">
+  <div class="carousel-container relative w-full object-contain mt-6 rounded-2xl shadow-2xl shadow-white/10">
   {
   video && (
     <video
@@ -140,13 +130,17 @@ const PROJECTS = [
   ) }
   { 
     images.map((img, index) => (
+      <div
+      class={`carousel-image w-full h-[300px] flex items-center justify-center bg-black/10 rounded-2xl overflow-hidden shadow-2xl shadow-white/10 ${
+        index === 0 ? "" : "hidden"
+      }`}
+    >
       <img
-        class={`carousel-image w-full rounded-2xl shadow-2xl shadow-white/10 ${
-          index === 0 ? "" : "hidden"
-        }`}
+        class="max-w-full max-h-full object-contain"
         src={img}
         alt={`Captura de pantalla del proyecto ${title}`}
       />
+    </div>
     ))
   
 }
