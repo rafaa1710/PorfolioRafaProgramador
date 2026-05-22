@@ -1,15 +1,36 @@
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* Small set of base styles used by the site */
 html, body {
 	height: 100%;
 }
 
+body {
+	color: rgba(255, 255, 255, 0.86);
+}
+
 /* Ensure images don't overflow their containers */
 img { max-width: 100%; height: auto; display: block; }
+
+@utility text-body {
+	color: rgba(255, 255, 255, 0.72);
+}
+
+@utility text-heading {
+	color: rgb(255, 255, 255);
+}
+
+@utility border-default {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+@utility bg-neutral-quaternary {
+	background-color: rgb(253 224 71);
+}
+
+@utility border-buffer {
+	border-color: rgba(5, 5, 5, 0.95);
+}
 
 /* end global.css */
 
