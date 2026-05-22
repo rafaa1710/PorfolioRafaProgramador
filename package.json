@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@fontsource-variable/onest": "^5.2.11",
+    "@tailwindcss/postcss": "^4.3.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.15",
+    "autoprefixer": "^10.5.0",
     "tailwindcss": "^4.1.18"
   }
 }
