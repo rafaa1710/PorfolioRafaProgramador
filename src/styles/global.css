@@ -1,2 +1,15 @@
-@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Small set of base styles used by the site */
+html, body {
+	height: 100%;
+}
+
+/* Ensure images don't overflow their containers */
+img { max-width: 100%; height: auto; display: block; }
+
+/* end global.css */
 
