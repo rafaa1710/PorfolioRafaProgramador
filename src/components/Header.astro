@@ -8,10 +8,10 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
 <header class="sticky top-0 z-50 border-b border-white/8 bg-[#080b10]/80 backdrop-blur-xl">
  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-8">
   <a href="#inicio" class="flex items-center gap-3 font-semibold" aria-label={isEnglish ? "Go to top" : "Ir al inicio"}><span class="grid size-9 place-items-center rounded-xl bg-yellow-200 text-sm font-black text-black">RG</span><span class="hidden sm:block">Rafa García</span></a>
-  <nav aria-label={isEnglish ? "Main navigation" : "Navegación principal"}><ul class="flex items-center gap-1 text-sm text-white/70 sm:gap-2">
-   <li class="hidden md:block"><a class="rounded-lg px-3 py-2 transition-colors hover:bg-white/10 hover:text-white" href="#experiencia">{isEnglish ? "Experience" : "Experiencia"}</a></li>
+  <nav class="hidden lg:block" aria-label={isEnglish ? "Main navigation" : "Navegación principal"}><ul class="flex items-center gap-2 text-sm text-white/70">
+   <li><a class="rounded-lg px-3 py-2 transition-colors hover:bg-white/10 hover:text-white" href="#experiencia">{isEnglish ? "Experience" : "Experiencia"}</a></li>
    <li><a class="rounded-lg px-2 py-2 transition-colors hover:bg-white/10 hover:text-white sm:px-3" href="#proyectos">{isEnglish ? "Projects" : "Proyectos"}</a></li>
-   <li class="hidden sm:block"><a class="rounded-lg px-3 py-2 transition-colors hover:bg-white/10 hover:text-white" href="#formacion">{isEnglish ? "Education" : "Formación"}</a></li>
+   <li><a class="rounded-lg px-3 py-2 transition-colors hover:bg-white/10 hover:text-white" href="#formacion">{isEnglish ? "Education" : "Formación"}</a></li>
    <li><a class="contact-button ml-1 rounded-full px-3 py-2 font-semibold sm:px-4" href="#contacto">{isEnglish ? "Let's talk" : "Hablemos"}</a></li>
    <li class="relative ml-3 -mr-1 sm:ml-6 lg:translate-x-4 xl:translate-x-8">
     <details class="language-menu">
@@ -23,10 +23,23 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
     </details>
    </li>
   </ul></nav>
+  <nav class="lg:hidden" aria-label={isEnglish ? "Mobile navigation" : "Navegación móvil"}><details class="mobile-menu relative">
+   <summary class="grid size-10 cursor-pointer list-none place-items-center rounded-xl border border-white/15 bg-white/5 text-xl text-white transition hover:bg-white/10" aria-label={isEnglish ? "Open menu" : "Abrir menú"}>☰</summary>
+   <div class="absolute right-0 top-12 w-56 rounded-2xl border border-white/10 bg-[#11151d] p-2 text-sm text-white/75 shadow-2xl">
+    <a class="block rounded-xl px-4 py-3 hover:bg-white/10 hover:text-white" href="#experiencia">{isEnglish ? "Experience" : "Experiencia"}</a>
+    <a class="block rounded-xl px-4 py-3 hover:bg-white/10 hover:text-white" href="#proyectos">{isEnglish ? "Projects" : "Proyectos"}</a>
+    <a class="block rounded-xl px-4 py-3 hover:bg-white/10 hover:text-white" href="#formacion">{isEnglish ? "Education" : "Formación"}</a>
+    <a class="contact-button mt-1 block rounded-xl px-4 py-3 text-center font-semibold" href="#contacto">{isEnglish ? "Let's talk" : "Hablemos"}</a>
+    <div class="mt-2 flex gap-1 border-t border-white/10 pt-2">
+     <a class:list={["flex flex-1 items-center justify-center gap-2 rounded-xl px-2 py-2 hover:bg-white/10",!isEnglish&&"bg-white/8 text-white"]} href={base}><FlagSpain class="h-4 w-6 rounded-sm"/> ES</a>
+     <a class:list={["flex flex-1 items-center justify-center gap-2 rounded-xl px-2 py-2 hover:bg-white/10",isEnglish&&"bg-white/8 text-white"]} href={base+"en/"}><FlagUsa class="h-4 w-6 rounded-sm"/> EN</a>
+    </div>
+   </div>
+  </details></nav>
  </div>
 </header>
 <style>
- .contact-button{background-color:#fef08a;color:#000!important;transition:background-color 180ms ease}.contact-button:hover{background-color:#fef9c3;color:#000!important}.language-menu summary::-webkit-details-marker{display:none}
+ .contact-button{background-color:#fef08a;color:#000!important;transition:background-color 180ms ease}.contact-button:hover{background-color:#fef9c3;color:#000!important}.language-menu summary::-webkit-details-marker,.mobile-menu summary::-webkit-details-marker{display:none}
 </style>
 
 
