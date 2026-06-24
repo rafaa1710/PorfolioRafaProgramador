@@ -1,199 +1,27 @@
----
-import GitHub from "../icons/GitHub.astro";
-import Tailwind from "../icons/Tailwind.astro";
-import Next from "../icons/Nextjs.astro";
+﻿---
 import Angular from "../icons/Angular.astro";
-import Php from "../icons/Php.astro";
 import Typescript from "../icons/Typescript.astro";
-import Mysql from "../icons/Mysql.astro";
-import Mariadb from "../icons/Mariadb.astro";
 import Spring from "../icons/Spring.astro";
-
-
-
-
-const TAGS = {
-  TAILWIND: {
-    name: "TailwindCSS",
-    color: "bg-[#003159] text-white",
-    icon: Tailwind,
-  },
-  NEXT: {
-    name: "Next.js",
-    color: "bg-[#2E2E2E] text-white",
-    icon: Next,
-  },
-  ANGULAR: {
-    name: "Angular",
-    color: "bg-[#0F172A] text-white",
-    icon: Angular,
-  },
-  PHP: {
-    name: "PHP",
-    color: "bg-[#4F5B93] text-white",
-    icon: Php,
-  },
-  TYPESCRIPT: {
-    name: "TypeScript",
-    color: "bg-[#1F3A8A] text-white",
-    icon: Typescript,
-  },
-  MYSQL: {
-    name: "MySQL",
-    color: "bg-[#4479A1] text-white",
-    icon: Mysql,
-  },
-  MARIADB: {
-    name: "MariaDB",
-    color: "bg-[#E6D5B8] text-white",
-    icon: Mariadb,
-  },
-  SPRING: {
-    name: "Spring",
-    color: "bg-[#14532D] text-white",
-    icon: Spring,
-  }
-  
-};
-
-const base = import.meta.env.BASE_URL.endsWith("/")
-  ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`;
-const PROJECTS = [
-  {
-     id: "trasterush",
-    title: "Aplicación contratación de trasteros",
-    description: "Creación de una aplicación web para la gestión y contratación de trasteros. La plataforma permite a los usuarios consultar disponibilidad, iniciar el proceso de contratación, registrarse, realizar pagos mediante una pasarela segura y formalizar la firma digital del contrato. Tras la validación del proceso, el sistema genera automáticamente un código único de acceso y lo envía por correo electrónico al usuario, actuando como llave digital del trastero durante el periodo contratado. La arquitectura de la aplicación combinó un frontend desarrollado en Angular, un backend en Spring Boot y una base de datos MariaDB. Además, se integró un microcontrolador ESP32 encargado de validar el estado del pago mediante peticiones HTTP y enviar la señal necesaria para accionar la cerradura electrónica y permitir el acceso físico al trastero. La plataforma también incluye un panel de administración para usuarios con rol administrador, desde el cual se pueden gestionar usuarios y trasteros mediante operaciones CRUD completas. Entre las funcionalidades implementadas se encontraba la posibilidad de cambiar el estado de los trasteros, marcarlos como disponibles, ocupados o en mantenimiento, además de supervisar la gestión general de la plataforma. También se desarrolló un boceto funcional de la interfaz principal de inicio de sesión como parte del diseño inicial de la experiencia de usuario.",
-    link: "https://github.com/rafaa1710/proyecto-uno",
-    gitHub: "https://github.com/rafaa1710/proyecto-uno",
-    images: [], 
-    video:`${base}result.mp4`,
-    tags: [TAGS.ANGULAR,   TAGS.TYPESCRIPT, TAGS.MARIADB, TAGS.SPRING, ],
-    
-  },
-
-  {
-    title: "Desarrollo ERP Y CRM",
-    description: "Proyecto basado en un sistema ERP–CRM modular en el que he desarrollado e integrado diferentes funcionalidades a lo largo del tiempo. La plataforma está formada por numerosos módulos interconectados que gestionan entidades como alumnos, módulos formativos, usuarios y procesos administrativos. Estos módulos comparten información entre sí, garantizando consistencia de datos y una gestión unificada dentro del sistema. El desarrollo se ha realizado con Angular para la capa de presentación, PHP para la lógica de negocio y MySQL como base de datos relacional, con un modelo de datos complejo y altamente relacionado que asegura integridad referencial y coherencia en toda la información.",
-    link: "https://github.com/rafaa1710/proyecto-uno",
-    gitHub: "https://github.com/rafaa1710/proyecto-uno",
-    images: [`${base}sge1.jpg`,
-              `${base}sge2.jpg`,
-              `${base}sge3.jpg`,
-              `${base}sge4.jpg`,
-              `${base}sge5.jpg`,
-            ],
-    tags: [TAGS.PHP, TAGS.ANGULAR, TAGS.MYSQL, TAGS.TYPESCRIPT],
-  },
-  
-  
+import Mariadb from "../icons/Mariadb.astro";
+import Php from "../icons/Php.astro";
+import Mysql from "../icons/Mysql.astro";
+const { lang = "es" } = Astro.props;
+const en = lang === "en";
+const base=import.meta.env.BASE_URL.endsWith("/")?import.meta.env.BASE_URL:import.meta.env.BASE_URL+"/";
+const media={video:base+"result.mp4",erp:[base+"sge1.jpg",base+"sge2.jpg",base+"sge3.jpg",base+"sge4.jpg",base+"sge5.jpg"]};
+const projects=en?[
+ {id:"trasterush",title:"Smart storage rental platform",summary:"A complete rental journey connecting a web application, payments, digital signatures and physical access.",description:"I designed a full stack solution where users check availability, complete their rental and receive a unique access code. An ESP32 validates payment status over HTTP and activates the electronic lock.",highlights:["Rental, payment and digital signature","Admin panel with full CRUD management","IoT integration for physical access","Automated Gmail notifications"],tags:["Angular","TypeScript","Spring Boot","MariaDB","ESP32"],video:media.video,images:[]},
+ {id:"erp-crm",title:"Modular ERP and CRM system",summary:"Unified management of students, training, users and administrative processes for an institutional environment.",description:"I developed and integrated connected modules built on a complex relational model. The focus was maintaining data consistency and making internal management workflows clearer.",highlights:["Interconnected modules and permissions","Relational data model","Centralised administrative workflows"],tags:["Angular","TypeScript","PHP","MySQL"],images:media.erp}
+]:[
+ {id:"trasterush",title:"Plataforma inteligente de alquiler de trasteros",summary:"Una experiencia de contratación completa que conecta aplicación web, pagos, firma digital y acceso físico.",description:"Diseñé una solución full stack donde el usuario consulta disponibilidad, contrata y recibe un código de acceso único. Un ESP32 valida el estado del pago mediante HTTP y acciona la cerradura electrónica.",highlights:["Contratación, pago y firma digital","Panel administrador con gestión CRUD","Integración IoT para acceso físico","Sistema de notificaciones automatizadas mediante Gmail"],tags:["Angular","TypeScript","Spring Boot","MariaDB","ESP32"],video:media.video,images:[]},
+ {id:"erp-crm",title:"Sistema modular ERP y CRM",summary:"Gestión unificada de alumnos, formación, usuarios y procesos administrativos para un entorno institucional.",description:"Desarrollé e integré módulos conectados sobre un modelo relacional complejo. El foco estuvo en mantener la consistencia de la información y hacer más claros los flujos de gestión internos.",highlights:["Módulos y permisos interconectados","Modelo de datos relacional","Flujos administrativos centralizados"],tags:["Angular","TypeScript","PHP","MySQL"],images:media.erp}
 ];
+const TAG_ICONS: Partial<Record<string, typeof Angular>>={Angular,TypeScript:Typescript,"Spring Boot":Spring,MariaDB:Mariadb,PHP:Php,MySQL:Mysql};
 ---
-
-{
-  PROJECTS.map(({ id, images, video, title, description, tags }) => (
-    <article
-    id={id} 
-    class="mb-16 pb-16 border-b border-white/10">
-      <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
-      <p class="text-lg mb-4 text-pretty">{description}</p>
-      
-      <ul class="flex flex-wrap gap-2">
-        {tags.map((tag) => {
-          const Icon = tag.icon;
-          return (
-            <li>
-              <span class={`flex items-center gap-x-2 rounded-full px-3 py-1 text-xs mb-2 ${tag.color}`}>
-                {tag.icon && <tag.icon class="size-4" />}
-                {tag.name}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
-
-
-      <div class="relative w-full max-w-3xl mx-auto">
-
-  <div class="carousel-container relative w-full object-contain mt-6 rounded-2xl shadow-2xl shadow-white/10">
-  {
-  video && (
-    <video
-      class="w-full rounded-2xl shadow-2xl shadow-white/10"
-      controls
-      autoplay
-      muted
-      loop
-    >
-      <source src={video} type="video/mp4" />
-    </video>
-  ) }
-  { 
-    images.map((img, index) => (
-      <div
-      class={`carousel-image w-full h-[300px] flex items-center justify-center bg-black/10 rounded-2xl overflow-hidden shadow-2xl shadow-white/10 ${
-        index === 0 ? "" : "hidden"
-      }`}
-    >
-      <img
-        class="max-w-full max-h-full object-contain"
-        src={img}
-        alt={`Captura de pantalla del proyecto ${title}`}
-      />
-    </div>
-    ))
-  
-}
-
-
-  <button
-    type="button"
-    class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white px-4 py-2 rounded-full"
-  >
-    ←
-  </button>
-
-  <button
-    type="button"
-    class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white px-4 py-2 rounded-full"
-  >
-    →
-  </button>
-</div>
-</div>
-
-
-    </article>
-
-    
-  ))
-}
+<div class="grid gap-10">{projects.map(project=><article id={project.id} class="glass-card overflow-hidden rounded-[2rem]"><div class="grid gap-8 p-6 sm:p-9 lg:grid-cols-[.8fr_1.4fr] lg:p-12"><div><h3 class="text-3xl font-semibold leading-tight tracking-[-.035em] text-white">{project.title}</h3><p class="mt-4 text-lg font-medium leading-7 text-white/85">{project.summary}</p><p class="mt-5 leading-7 text-white/55">{project.description}</p><ul class="mt-6 space-y-2 text-sm text-white/70">{project.highlights.map(item=><li class="flex gap-3"><span class="text-yellow-200">✓</span>{item}</li>)}</ul><ul class="mt-7 flex flex-wrap gap-2">{project.tags.map(tag=>{const Icon=TAG_ICONS[tag];return <li class="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/65">{Icon&&<Icon class="size-4"/>}{tag}</li>})}</ul></div><div class="self-center overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-2xl">{project.video?<video class="h-auto w-full object-contain" controls muted loop playsinline preload="metadata"><source src={project.video} type="video/mp4"/>{en?"Your browser cannot play this video.":"Tu navegador no puede reproducir este vídeo."}</video>:<div class="carousel relative" data-carousel>{project.images.map((image,index)=><figure class:list={["carousel-slide aspect-video w-full",index!==0&&"hidden"]}><img class="h-full w-full object-contain" src={image} alt={(en?"Screenshot ":"Captura ")+(index+1)+(en?" of ":" de ")+project.title} loading="lazy" width="900" height="506"/></figure>)}{project.images.length>1&&<><button class="carousel-prev absolute left-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-black/70 text-white hover:bg-black" type="button" aria-label={en?"Previous image":"Imagen anterior"}>←</button><button class="carousel-next absolute right-3 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-black/70 text-white hover:bg-black" type="button" aria-label={en?"Next image":"Imagen siguiente"}>→</button><span class="carousel-count absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-xs text-white">1 / {project.images.length}</span></>}</div>}</div></div></article>)}</div>
 <script is:inline>
-  document.querySelectorAll(".carousel-container").forEach((container) => {
-    const images = container.querySelectorAll(".carousel-image");
-    const nextBtn = container.querySelector(".carousel-next");
-    const prevBtn = container.querySelector(".carousel-prev");
-
-    let current = 0;
-
-    function showImage(index) {
-      images.forEach((image, i) => {
-        if (i === index) {
-          image.classList.remove("hidden");
-        } else {
-          image.classList.add("hidden");
-        }
-      });
-    }
-
-    nextBtn.addEventListener("click", () => {
-      current = (current + 1) % images.length;
-      showImage(current);
-    });
-
-    prevBtn.addEventListener("click", () => {
-      current = (current - 1 + images.length) % images.length;
-      showImage(current);
-    });
-  });
+ document.querySelectorAll("[data-carousel]").forEach(carousel=>{const slides=[...carousel.querySelectorAll(".carousel-slide")];let current=0;const count=carousel.querySelector(".carousel-count");const show=index=>{slides.forEach((slide,i)=>slide.classList.toggle("hidden",i!==index));if(count)count.textContent=(index+1)+" / "+slides.length};carousel.querySelector(".carousel-next")?.addEventListener("click",()=>{current=(current+1)%slides.length;show(current)});carousel.querySelector(".carousel-prev")?.addEventListener("click",()=>{current=(current-1+slides.length)%slides.length;show(current)})});
 </script>
+
+
+

@@ -1,14 +1,33 @@
-<header class="flex justify-center items-center py-5 w-full xl:w-[1120px] mx-auto">
-    
-
-
-
-    <nav class="flex flex-row flex-wrap gap-x-6 sm:gap-x-10 opacity-80 justify-center">
-        
-        <a class="text-lg md:text-xl lg:text-2xl px-3 py-2 touch-manipulation" href="#Sobremi">Sobre mí</a>
-        <a class="text-lg md:text-xl lg:text-2xl px-3 py-2 touch-manipulation" href="#experiencia">Experiencia</a>
-        <a class="text-lg md:text-xl lg:text-2xl px-3 py-2 touch-manipulation" href="#proyectos">Proyectos</a>
-        <a class="text-lg md:text-xl lg:text-2xl px-3 py-2 touch-manipulation" href="#contacto">Contacto</a>
-    </nav>
-
+﻿---
+import FlagSpain from "../icons/FlagSpain.astro";
+import FlagUsa from "../icons/FlagUsa.astro";
+const { lang = "es" } = Astro.props;
+const isEnglish = lang === "en";
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + "/";
+---
+<header class="sticky top-0 z-50 border-b border-white/8 bg-[#080b10]/80 backdrop-blur-xl">
+ <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-8">
+  <a href="#inicio" class="flex items-center gap-3 font-semibold" aria-label={isEnglish ? "Go to top" : "Ir al inicio"}><span class="grid size-9 place-items-center rounded-xl bg-yellow-200 text-sm font-black text-black">RG</span><span class="hidden sm:block">Rafa García</span></a>
+  <nav aria-label={isEnglish ? "Main navigation" : "Navegación principal"}><ul class="flex items-center gap-1 text-sm text-white/70 sm:gap-2">
+   <li class="hidden md:block"><a class="rounded-lg px-3 py-2 transition-colors hover:bg-white/10 hover:text-white" href="#experiencia">{isEnglish ? "Experience" : "Experiencia"}</a></li>
+   <li><a class="rounded-lg px-2 py-2 transition-colors hover:bg-white/10 hover:text-white sm:px-3" href="#proyectos">{isEnglish ? "Projects" : "Proyectos"}</a></li>
+   <li class="hidden sm:block"><a class="rounded-lg px-3 py-2 transition-colors hover:bg-white/10 hover:text-white" href="#formacion">{isEnglish ? "Education" : "Formación"}</a></li>
+   <li><a class="contact-button ml-1 rounded-full px-3 py-2 font-semibold sm:px-4" href="#contacto">{isEnglish ? "Let's talk" : "Hablemos"}</a></li>
+   <li class="relative ml-3 -mr-1 sm:ml-6 lg:translate-x-4 xl:translate-x-8">
+    <details class="language-menu">
+     <summary class="grid size-9 cursor-pointer list-none place-items-center rounded-full border border-white/15 bg-white/5 text-lg transition hover:bg-white/10" aria-label={isEnglish ? "Select language" : "Seleccionar idioma"}>{isEnglish ? <FlagUsa class="h-5 w-7 rounded-sm shadow-sm"/> : <FlagSpain class="h-5 w-7 rounded-sm shadow-sm"/>}</summary>
+     <div class="absolute right-0 top-12 w-36 overflow-hidden rounded-2xl border border-white/10 bg-[#11151d] p-1.5 shadow-2xl">
+      <a class:list={["flex items-center gap-2 rounded-xl px-3 py-2 hover:bg-white/10",!isEnglish&&"bg-white/8 text-white"]} href={base}><FlagSpain class="h-4 w-6 rounded-sm"/> Español</a>
+      <a class:list={["flex items-center gap-2 rounded-xl px-3 py-2 hover:bg-white/10",isEnglish&&"bg-white/8 text-white"]} href={base+"en/"}><FlagUsa class="h-4 w-6 rounded-sm"/> English</a>
+     </div>
+    </details>
+   </li>
+  </ul></nav>
+ </div>
 </header>
+<style>
+ .contact-button{background-color:#fef08a;color:#000!important;transition:background-color 180ms ease}.contact-button:hover{background-color:#fef9c3;color:#000!important}.language-menu summary::-webkit-details-marker{display:none}
+</style>
+
+
+

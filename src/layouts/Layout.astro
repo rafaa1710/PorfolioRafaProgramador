@@ -1,92 +1,11 @@
+﻿---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import "@fontsource-variable/onest";
+const {
+  lang = "es",
+  title = lang === "en" ? "Rafa García — Full Stack Developer" : "Rafa García — Desarrollador Full Stack",
+  description = lang === "en" ? "Portfolio of Rafa García, a full stack developer specialising in Angular, Spring Boot, PHP and databases." : "Portfolio de Rafa García, desarrollador full stack especializado en Angular, Spring Boot, PHP y bases de datos."
+} = Astro.props;
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
-import '@fontsource-variable/onest';
-
-const { title = 'Portfolio de Rafael Programador' } = Astro.props;
----
-
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="e362afd2-7f1d-44e7-8535-0a5f78837f78" data-blockingmode="auto" type="text/javascript"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-59EF240LMB"></script>
-
-<script is:inline>
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-    window.dataLayer.push(arguments);
-  }
-
-  gtag("js", new Date());
-  gtag("config", "G-59EF240LMB");
-</script>  
-    <meta charset="utf-8" />
-    <title>{title}</title>
-    <link rel="icon" href={`${import.meta.env.BASE_URL}avatar.png`} type="image/png" sizes="512x512" />
-    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}avatar.png`} />
-
-                                                                                                                                                                                                    
-    <!-- Google tag (gtag.js) -->                                                                                                                                                                                                  
-   
-
-  </head>
-
-  <body>
-    <!-- Fondo, SOLO fondo -->
-    <div class="bg" aria-hidden="true"></div>
-
-    <!-- Contenido normal (scrolleable) -->
-    <Header />
-    <main class="page">
-      <slot />
-    </main>
-    <script is:inline>
-    window.history.scrollRestoration = "manual";
-
-    window.onload = () => {
-      window.scrollTo(0, 0);
-    };
-  </script>
-  </body>
-</html>
-
-<style>
-  :root { color-scheme: dark; }
-
-  html {
-    font-family: "Onest Variable", system-ui, sans-serif;
-    scroll-behavior: smooth;
-  }
-
-  body {
-    background: #050505;
-    margin: 0;
-    
-  }
-
-  .page {
-    min-height: 100vh;
-    padding: 1rem 0 3rem;
-  }
-
-  .bg{
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background: radial-gradient(125% 125% at 50% 10%, #000 40%, #63e 100%);
-  }
-
-@media (min-width: 640px) {
-  .page {
-    padding-top: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .page {
-    padding-top: 3rem;
-  }
-}
-</style>
+<!doctype html><html lang={lang}><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="description" content={description}/><meta name="theme-color" content="#080b10"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:image" content={import.meta.env.BASE_URL + "fotoProg.jpg"}/><title>{title}</title><link rel="icon" href={import.meta.env.BASE_URL + "avatar.png"} type="image/png"/></head><body><a class="sr-only focus:not-sr-only fixed top-3 left-3 z-[60] rounded-lg bg-yellow-200 px-4 py-2 text-black" href="#contenido">{lang === "en" ? "Skip to content" : "Saltar al contenido"}</a><Header lang={lang}/><main id="contenido"><slot/></main></body></html>

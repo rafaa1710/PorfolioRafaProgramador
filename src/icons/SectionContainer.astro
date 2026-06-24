@@ -1,7 +1,4 @@
+﻿---
+const { class: className, id } = Astro.props;
 ---
-const { class : className, id } = Astro.props;
----
-
-<section id={id} class:list={["w-full mx-auto lg:w-[740px] py-20 sm:py-24", className]}>
-    <slot />
-</section>
+<section id={id} class:list={["w-full py-20 sm:py-28",className]}><slot/></section>

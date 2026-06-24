@@ -1,0 +1,47 @@
+﻿---
+import SectionContainer from "../icons/SectionContainer.astro";
+import GitHub from "../icons/GitHub.astro";
+import Linkedin from "../icons/Linkedin.astro";
+import Mail from "../icons/Mail.astro";
+import Experience from "./Experience.astro";
+import Project from "./Project.astro";
+import Formacion from "./Formacion.astro";
+import Contacto from "./Contacto.astro";
+import Footer from "./Footer.astro";
+const { lang = "es" } = Astro.props;
+const en = lang === "en";
+const copy = en ? {
+ available:"Available for new opportunities",role:"Full Stack Developer",title:"I build modern, fast digital products ",accent:"designed to grow.",
+ intro:"I'm Rafael García. I develop web applications from end to end, from clear Angular interfaces to robust Spring Boot APIs and well-designed data systems.",
+ projects:"View projects ↓",write:"Write to me",social:"Social media",trajectory:"Career",experience:"Experience building solutions",
+ experienceIntro:"I have contributed to real products, from hardware-connected platforms to enterprise management systems.",selected:"Selected work",
+ featured:"Featured projects",projectsIntro:"Two examples of how I turn complex requirements into complete, maintainable applications.",
+ learning:"Continuous learning",education:"Education and certifications"
+} : {
+ available:"Disponible para nuevas oportunidades",role:"Desarrollador Full Stack",title:"Soy Rafael García desarrollador de productos digitales ",accent:"modernos, rápidos y pensados para crecer.",
+ intro:"Soy Rafael García. Desarrollo aplicaciones web de principio a fin, desde interfaces claras en Angular hasta APIs robustas con Spring Boot y sistemas de datos bien diseñados.",
+ projects:"Ver proyectos ↓",write:"Escríbeme",social:"Redes sociales",trajectory:"Trayectoria",experience:"Experiencia construyendo soluciones",
+ experienceIntro:"He participado en productos reales, desde plataformas conectadas con hardware hasta sistemas de gestión empresarial.",selected:"Trabajo seleccionado",
+ featured:"Proyectos destacados",projectsIntro:"Dos ejemplos de cómo convierto requisitos complejos en aplicaciones completas y mantenibles.",
+ learning:"Aprendizaje continuo",education:"Formación y certificaciones"
+};
+const gmail="https://mail.google.com/mail/?view=cm&fs=1&to=rafaprogramador17@gmail.com&su="+(en?"Portfolio%20contact":"Contacto%20desde%20tu%20portfolio");
+---
+<div class="mx-auto max-w-6xl px-5 sm:px-8">
+ <SectionContainer id="inicio" class="grid min-h-[calc(100vh-4rem)] content-center gap-5 sm:grid-cols-[100px_1fr] sm:items-start lg:grid-cols-[120px_1fr] lg:gap-10">
+  <div class="relative mx-0 sm:mt-3"><div class="absolute -inset-2 rounded-2xl bg-gradient-to-br from-blue-500/15 to-yellow-200/8 blur-lg"></div><img class="relative aspect-square w-20 rounded-2xl border border-white/10 object-cover object-center shadow-xl sm:w-24 lg:w-28" src={import.meta.env.BASE_URL+"fotoProg.jpg"} alt={en?"Rafa García, full stack developer":"Rafa García, desarrollador full stack"} width="112" height="112"/></div>
+  <div>
+   <a href="https://www.linkedin.com/in/rafael-g-677988153/" target="_blank" rel="noopener noreferrer" class="mb-7 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-400/15 px-3 py-1.5 text-sm text-emerald-100 transition-all duration-300 hover:bg-emerald-400/25"><span class="size-2 animate-pulse rounded-full bg-emerald-400"></span>{copy.available}</a>
+   <p class="eyebrow">{copy.role}</p><h1 class="mt-4 max-w-4xl text-5xl font-bold leading-[.98] tracking-[-.055em] text-white sm:text-7xl">{copy.title}<span class="text-yellow-200">{copy.accent}</span></h1>
+   <p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/65 sm:text-xl">{copy.intro}</p>
+   <div class="mt-9 flex flex-wrap gap-3"><a href="#proyectos" class="rounded-full bg-yellow-200 px-6 py-3 font-semibold !text-black transition hover:-translate-y-0.5 hover:bg-yellow-100">{copy.projects}</a><a href={gmail} target="_blank" rel="noreferrer" class="rounded-full border border-white/15 bg-white/5 px-6 py-3 font-semibold transition hover:border-white/30 hover:bg-white/10">{copy.write}</a></div>
+   <nav class="mt-8 flex flex-wrap gap-5 text-sm text-white/55" aria-label={copy.social}><a class="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 transition-all duration-200 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 hover:text-white hover:shadow-lg hover:shadow-black/20" href="https://www.linkedin.com/in/rafael-g-677988153/" target="_blank" rel="noreferrer"><Linkedin class="size-5"/>LinkedIn</a><a class="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 transition-all duration-200 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 hover:text-white hover:shadow-lg hover:shadow-black/20" href="https://github.com/rafaa1710" target="_blank" rel="noreferrer"><GitHub class="size-5"/>GitHub</a><a class="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 transition-all duration-200 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 hover:text-white hover:shadow-lg hover:shadow-black/20" href={gmail} target="_blank" rel="noreferrer"><Mail class="size-5"/>Email</a></nav>
+  </div>
+ </SectionContainer>
+ <SectionContainer id="experiencia"><p class="eyebrow">{copy.trajectory}</p><h2 class="section-title">{copy.experience}</h2><p class="section-intro">{copy.experienceIntro}</p><div class="mt-12"><Experience lang={lang}/></div></SectionContainer>
+ <SectionContainer id="proyectos"><p class="eyebrow">{copy.selected}</p><h2 class="section-title">{copy.featured}</h2><p class="section-intro">{copy.projectsIntro}</p><div class="mt-12"><Project lang={lang}/></div></SectionContainer>
+ <SectionContainer id="formacion"><p class="eyebrow">{copy.learning}</p><h2 class="section-title">{copy.education}</h2><div class="mt-12"><Formacion lang={lang}/></div></SectionContainer>
+ <SectionContainer id="contacto"><Contacto lang={lang}/></SectionContainer>
+ <Footer lang={lang}/>
+</div>
+

@@ -1,50 +1,5 @@
-<footer
-  class="rounded-2xl border border-white/10
-         bg-black/20 backdrop-blur-lg
-         w-full max-w-11xl
-         mx-auto mb-10"
->
-  <div
-    class="flex flex-col gap-4
-           md:flex-row md:items-center md:justify-between
-           p-4 md:px-6"
-  >
-    <span class="text-base md:text-sm text-body text-center md:text-left">
-      © 2026
-      <span class="font-bold">Rafa García</span>
-      —
-      <span class="text-yellow-300 font-semibold">
-        Desarrollador Fullstack
-      </span>
-    </span>
-
-    <ul
-      class="flex flex-wrap justify-center gap-6
-             text-base md:text-sm font-medium text-body"
-    >
-      <li>
-        <a href="#" class="hover:text-white transition px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-300">
-          Inicio
-        </a>
-      </li>
-
-      <li>
-        <a href="#experiencia" class="hover:text-white transition px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-300">
-          Experiencia
-        </a>
-      </li>
-
-      <li>
-        <a href="#proyectos" class="hover:text-white transition px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-300">
-          Proyectos
-        </a>
-      </li>
-
-      <li>
-        <a href="#contacto" class="hover:text-white transition px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-300">
-          Contacto
-        </a>
-      </li>
-    </ul>
-  </div>
-</footer>
+﻿---
+const { lang = "es" } = Astro.props;
+const en = lang === "en";
+---
+<footer class="flex flex-col items-center justify-between gap-4 py-10 text-sm text-white/45 sm:flex-row"><p>© 2026 Rafael García.</p><div class="flex gap-5"><a class="hover:text-white" href="#inicio">{en?"Home":"Inicio"}</a><a class="hover:text-white" href="https://github.com/rafaa1710" target="_blank" rel="noreferrer">GitHub</a><a class="hover:text-white" href="https://www.linkedin.com/in/rafael-garcia-rgc-677988153/" target="_blank" rel="noreferrer">LinkedIn</a></div></footer>
