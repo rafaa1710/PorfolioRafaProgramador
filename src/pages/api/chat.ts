@@ -5,9 +5,7 @@ import { join } from "node:path";
 import { systemPrompt } from "../../ai/systemPrompt";
 export const prerender = false;
 
-const ai = new GoogleGenAI({
-  apiKey: import.meta.env.GEMINI_API_KEY,
-});
+
 
 function readDataFile(path: string) {
   return readFileSync(join(process.cwd(), path), "utf-8");
@@ -15,6 +13,16 @@ function readDataFile(path: string) {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+
+    const apiKey = process.env.GEMINI_API_KEY;
+
+    if (!apiKey) {
+      throw new Error("Missing GEMINI_API_KEY");
+    }
+
+    const ai = new GoogleGenAI({
+      apiKey,
+    });
     const { message } = await request.json();
 
     const about = readDataFile("src/data/about.md");
