@@ -1,5 +1,54 @@
-﻿---
+---
+import GitHub from "../icons/GitHub.astro";
+import Linkedin from "../icons/Linkedin.astro";
+import Mail from "../icons/Mail.astro";
+
 const { lang = "es" } = Astro.props;
 const en = lang === "en";
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + "/";
+const year = new Date().getFullYear();
+
+
+const navLinks = [
+  { href: "#inicio", label: en ? "Home" : "Inicio" },
+  { href: "#experiencia", label: en ? "Experience" : "Experiencia" },
+  { href: "#proyectos", label: en ? "Projects" : "Proyectos" },
+  { href: "#formacion", label: en ? "Education" : "Formación" },
+  
+];
 ---
-<footer class="flex flex-col items-center justify-between gap-4 py-10 text-sm text-white/45 sm:flex-row"><p>© 2026 Rafael García.</p><div class="flex gap-5"><a class="hover:text-white" href="#inicio">{en?"Home":"Inicio"}</a><a class="hover:text-white" href="https://github.com/rafaa1710" target="_blank" rel="noreferrer">GitHub</a><a class="hover:text-white" href="https://www.linkedin.com/in/rafael-garcia-rgc-677988153/" target="_blank" rel="noreferrer">LinkedIn</a></div></footer>
+<footer class="relative mt-16 pb-8 pt-4">
+  <div class="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+  <div class="overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[.035] shadow-2xl shadow-black/20 backdrop-blur-xl">
+    <div class="relative grid gap-8 px-6 py-8 sm:px-8 lg:grid-cols-[1.2fr_.8fr] lg:items-center">
+      <div class="absolute -right-16 -top-20 h-44 w-44 rounded-full bg-yellow-200/10 blur-3xl"></div>
+      <div class="relative flex flex-col gap-4">
+        <a href="#inicio" class="flex w-fit items-center gap-3" aria-label={en ? "Go to top" : "Ir al inicio"}>
+          
+          <div>
+            <p class="font-semibold text-white">Rafael García</p>
+            <p class="text-sm text-white/50">{en ? "Full Stack Developer" : "Desarrollador Full Stack"}</p>
+          </div>
+        </a>
+        
+      </div>
+
+      <div class="relative flex flex-col gap-5 lg:items-end">
+        <nav aria-label={en ? "Footer navigation" : "Navegación del pie"} class="flex flex-wrap gap-2 text-sm text-white/60 lg:justify-end">
+          {navLinks.map((link) => (
+            <a class="rounded-full border border-white/10 px-3 py-1.5 transition hover:border-yellow-200/45 hover:bg-yellow-200/10 hover:text-white" href={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2 border-t border-white/10 px-6 py-4 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+      <p>© {year} Rafael García. {en ? "All rights reserved." : "Todos los derechos reservados."}</p>
+      <p>{en ? "Designed and developed in Spain." : "Diseñado y desarrollado en España."}</p>
+    </div>
+  </div>
+</footer>

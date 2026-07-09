@@ -7,11 +7,10 @@ import Experience from "./Experience.astro";
 import Project from "./Project.astro";
 import Formacion from "./Formacion.astro";
 import Contacto from "./Contacto.astro";
-import Footer from "./Footer.astro";
 const { lang = "es" } = Astro.props;
 const en = lang === "en";
 const copy = en ? {
- available:"Available for new opportunities",role:"Full Stack Developer",title:"I'm Rafael build modern, fast digital products ",accent:"designed to grow.",
+ available:"Available for new opportunities",role:"Full Stack Software Developer",title:"Rafael García, digital product developer ",accent:" modern, fast, and designed to grow.",
  introTitle:"Higher Technician in Multiplatform Application Development (DAM)",
  intro:"Advanced Vocational Training specialized in software development, web and mobile applications, databases, and programming.",
  projects:"View projects ↓",write:"Write to me",social:"Social media",trajectory:"Career",experience:"Experience building solutions",
@@ -19,7 +18,7 @@ const copy = en ? {
  featured:"Featured projects",projectsIntro:"Two examples of how I turn complex requirements into complete, maintainable applications.",
  learning:"Continuous learning",education:"Education and certifications"
 } : {
- available:"Disponible para nuevas oportunidades",role:"Desarrollador Full Stack",title:"Soy Rafael desarrollador de productos digitales ",accent:"modernos, rápidos y pensados para crecer.",
+ available:"Disponible para nuevas oportunidades",role:"Desarrollador Full Stack",title:"Rafael García desarrollador de productos digitales ",accent:"modernos, rápidos y pensados para crecer.",
  introTitle:"Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)",
  intro:"Formación Profesional de Grado Superior especializada en desarrollo de software, aplicaciones web y móviles, bases de datos y programación.",
  projects:"Ver proyectos ↓",write:"Escríbeme",social:"Redes sociales",trajectory:"Trayectoria",experience:"Experiencia construyendo soluciones",
@@ -47,6 +46,5 @@ const gmail="https://mail.google.com/mail/?view=cm&fs=1&to=rafaprogramador17@gma
  <SectionContainer id="proyectos"><p class="eyebrow">{copy.selected}</p><h2 class="section-title">{copy.featured}</h2><p class="section-intro">{copy.projectsIntro}</p><div class="mt-12"><Project lang={lang}/></div></SectionContainer>
  <SectionContainer id="formacion"><p class="eyebrow">{copy.learning}</p><h2 class="section-title">{copy.education}</h2><div class="mt-12"><Formacion lang={lang}/></div></SectionContainer>
  <SectionContainer id="contacto"><Contacto lang={lang}/></SectionContainer>
- <Footer lang={lang}/>
 </div>
 

@@ -22,6 +22,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const body = await request.json();
     const message = typeof body?.message === "string" ? body.message.trim() : "";
+    const lang = body?.lang === "en" ? "English" : "Spanish";
 
     if (!message) {
       return new Response(
@@ -52,6 +53,8 @@ ${bdiCompany}
 
 User question:
 ${message}
+
+Answer in ${lang}.
 `;
 
     const response = await ai.models.generateContent({

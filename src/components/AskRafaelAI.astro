@@ -1,30 +1,65 @@
-<div id="ai-widget" aria-live="polite">
+---
+const { lang = "es" } = Astro.props;
+const en = lang === "en";
+const copy = en
+  ? {
+      openLabel: "Open Rafael AI chat",
+      windowLabel: "Chat with Rafael AI",
+      closeLabel: "Close chat",
+      subtitle: "Ask me about Rafael",
+      greeting:
+        "Hi, I'm Rafael AI. Ask me about my experience, projects or technologies.",
+      placeholder: "Write your question...",
+      sendLabel: "Send message",
+      loading: "Thinking...",
+      fallback: "I couldn't answer that.",
+      error: "Something went wrong. Try again.",
+    }
+  : {
+      openLabel: "Abrir chat de Rafael AI",
+      windowLabel: "Chat con Rafael AI",
+      closeLabel: "Cerrar chat",
+      subtitle: "Preguntame sobre Rafael",
+      greeting:
+        "Hola, soy Rafael AI. Preguntame sobre mi experiencia, proyectos o tecnologias.",
+      placeholder: "Escribe tu pregunta...",
+      sendLabel: "Enviar mensaje",
+      loading: "Pensando...",
+      fallback: "No he podido responder a eso.",
+      error: "Ha ocurrido un error. Intentalo de nuevo.",
+    };
+---
+
+<div
+  id="ai-widget"
+  aria-live="polite"
+  data-copy={JSON.stringify(copy)}
+  data-lang={lang}
+>
   <button
     id="toggle-chat"
     class="chat-button"
     type="button"
-    aria-label="Abrir chat de Rafael AI"
+    aria-label={copy.openLabel}
     aria-expanded="false"
     aria-controls="chat-window"
   >
-    <span aria-hidden="true">🤖</span>
+    <span aria-hidden="true">&#129302;</span>
   </button>
 
-  <section id="chat-window" class="chat-window hidden" aria-label="Chat con Rafael AI">
+  <section id="chat-window" class="chat-window hidden" aria-label={copy.windowLabel}>
     <header class="chat-header">
       <div>
-        <strong>🤖 Ask Rafael AI</strong>
-        <small>Preguntame sobre Rafael</small>
+        <strong>&#129302; Ask Rafael AI</strong>
+        <small>{copy.subtitle}</small>
       </div>
 
-      <button id="close-chat" type="button" aria-label="Cerrar chat">x</button>
+      <button id="close-chat" type="button" aria-label={copy.closeLabel}>x</button>
     </header>
 
     <div class="chat-body">
       <div class="chat-message bot">
-        <div>
-          Hola, soy Rafael AI. Preguntame sobre mi experiencia, proyectos o tecnologias.
-        </div>
+        <div>{copy.greeting}</div>
       </div>
     </div>
 
@@ -33,11 +68,11 @@
         id="question"
         type="text"
         name="question"
-        placeholder="Escribe tu pregunta..."
+        placeholder={copy.placeholder}
         autocomplete="off"
       />
 
-      <button id="send" type="submit" aria-label="Enviar mensaje">
+      <button id="send" type="submit" aria-label={copy.sendLabel}>
         <span aria-hidden="true">&rarr;</span>
       </button>
     </form>
@@ -45,19 +80,41 @@
 </div>
 
 <script>
-  const widget = document.getElementById("chat-window") as HTMLElement;
-  const open = document.getElementById("toggle-chat") as HTMLButtonElement;
-  const close = document.getElementById("close-chat") as HTMLButtonElement;
-  const form = document.getElementById("chat-form") as HTMLFormElement;
-  const input = document.getElementById("question") as HTMLInputElement;
-  const chatBody = document.querySelector(".chat-body") as HTMLDivElement;
+  const root = document.getElementById("ai-widget");
+
+  if (root instanceof HTMLElement) {
+    const widget = root.querySelector("#chat-window");
+    const openButton = root.querySelector("#toggle-chat");
+    const closeButton = root.querySelector("#close-chat");
+    const form = root.querySelector("#chat-form");
+    const input = root.querySelector("#question");
+    const chatBody = root.querySelector(".chat-body");
+    const copy = JSON.parse(root.dataset.copy ?? "{}") as {
+      loading: string;
+      fallback: string;
+      error: string;
+    };
+    const lang = root.dataset.lang ?? "es";
+
+    if (
+  widget instanceof HTMLElement &&
+  openButton instanceof HTMLButtonElement &&
+  closeButton instanceof HTMLButtonElement &&
+  form instanceof HTMLFormElement &&
+  input instanceof HTMLInputElement &&
+  chatBody instanceof HTMLElement
+) {
+  const chatWindow = widget;
+  const toggleButton = openButton;
+  const questionInput = input;
+  const messagesContainer = chatBody;
 
   function setChatOpen(isOpen: boolean) {
-    widget.classList.toggle("hidden", !isOpen);
-    open.setAttribute("aria-expanded", String(isOpen));
+    chatWindow.classList.toggle("hidden", !isOpen);
+    toggleButton.setAttribute("aria-expanded", String(isOpen));
 
     if (isOpen) {
-      input.focus();
+      questionInput.focus();
     }
   }
 
@@ -69,20 +126,20 @@
     bubble.textContent = text;
 
     wrapper.appendChild(bubble);
-    chatBody.appendChild(wrapper);
-    chatBody.scrollTop = chatBody.scrollHeight;
+    messagesContainer.appendChild(wrapper);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     return bubble;
   }
 
   async function sendMessage() {
-    const message = input.value.trim();
+    const message = questionInput.value.trim();
     if (!message) return;
 
     addMessage(message, "user");
-    input.value = "";
+    questionInput.value = "";
 
-    const loadingMessage = addMessage("Pensando...", "bot");
+    const loadingMessage = addMessage(copy.loading, "bot");
 
     try {
       const response = await fetch("/api/chat", {
@@ -90,7 +147,7 @@
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message, lang }),
       });
 
       if (!response.ok) {
@@ -98,17 +155,17 @@
       }
 
       const data = await response.json();
-      loadingMessage.textContent = data.answer ?? "No he podido responder a eso.";
+      loadingMessage.textContent = data.answer ?? copy.fallback;
     } catch (error) {
-      loadingMessage.textContent = "Ha ocurrido un error. Intentalo de nuevo.";
+      loadingMessage.textContent = copy.error;
     }
   }
 
-  open.addEventListener("click", () => {
-    setChatOpen(widget.classList.contains("hidden"));
+  toggleButton.addEventListener("click", () => {
+    setChatOpen(chatWindow.classList.contains("hidden"));
   });
 
-  close.addEventListener("click", () => {
+  closeButton.addEventListener("click", () => {
     setChatOpen(false);
   });
 
@@ -116,6 +173,8 @@
     event.preventDefault();
     sendMessage();
   });
+}
+  }
 </script>
 
 <style>
