@@ -1,7 +1,53 @@
-﻿---
+---
 import Mail from "../icons/Mail.astro";
+
 const { lang = "es" } = Astro.props;
 const en = lang === "en";
-const gmail="https://mail.google.com/mail/?view=cm&fs=1&to=rafaprogramador17@gmail.com&su="+(en?"Portfolio%20contact":"Contacto%20desde%20tu%20portfolio");
+const email = "rafaprogramador17@gmail.com";
+const action = `https://formsubmit.co/${email}`;
+const thanksPath = en ? "/en/thanks" : "/gracias";
+const nextUrl = new URL(thanksPath, Astro.url).toString();
 ---
-<section class="glass-card relative overflow-hidden rounded-[2rem] px-6 py-14 text-center sm:px-14 sm:py-20"><div class="absolute left-1/2 top-0 h-48 w-96 -translate-x-1/2 rounded-full bg-yellow-200/10 blur-3xl"></div><div class="relative"><p class="eyebrow">{en?"Contact":"Contacto"}</p><h2 class="mx-auto mt-4 max-w-2xl text-4xl font-bold tracking-[-.04em] text-white sm:text-5xl">{en?"Have a project or an opportunity?":"¿Tienes un proyecto o una oportunidad?"}</h2><p class="mx-auto mt-5 max-w-xl text-lg leading-8 text-white/60">{en?"I'm open to collaborating on useful products with teams that care about building things well. Tell me what you're working on.":"Estoy abierto a colaborar en productos útiles y equipos con ganas de construir bien. Cuéntame qué tienes entre manos."}</p><a href={gmail} target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-3 rounded-full bg-yellow-200 px-7 py-3.5 font-semibold !text-black transition hover:-translate-y-0.5 hover:bg-yellow-100"><Mail class="size-5"/>{en?"Open Gmail":"Abrir Gmail"}</a><p class="mt-5 text-sm text-white/40">rafaprogramador17@gmail.com</p></div></section>
+
+<section class="glass-card relative overflow-hidden rounded-[2rem] px-6 py-14 sm:px-14 sm:py-20">
+ <div class="absolute left-1/2 top-0 h-48 w-96 -translate-x-1/2 rounded-full bg-yellow-200/10 blur-3xl"></div>
+ <div class="relative mx-auto max-w-3xl">
+  <div class="text-center">
+   <p class="eyebrow">{en ? "Contact" : "Contacto"}</p>
+   <h2 class="mx-auto mt-4 max-w-2xl text-4xl font-bold tracking-[-.04em] text-white sm:text-5xl">{en ? "Have a project or an opportunity?" : "¿Tienes un proyecto o una oportunidad?"}</h2>
+   <p class="mx-auto mt-5 max-w-xl text-lg leading-8 text-white/60">{en ? "I'm open to collaborating on useful products with teams that care about building things well. Tell me what you're working on." : "Estoy abierto a colaborar en productos útiles y equipos con ganas de construir bien. Cuéntame qué tienes entre manos."}</p>
+  </div>
+
+  <form action={action} method="POST" class="mt-10 grid gap-4 text-left">
+   <input type="hidden" name="_subject" value={en ? "New portfolio contact" : "Nuevo contacto desde el portfolio"} />
+   <input type="hidden" name="_next" value={nextUrl} />
+   <input type="hidden" name="_template" value="table" />
+   <input type="hidden" name="_captcha" value="false" />
+   <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+
+   <div class="grid gap-4 sm:grid-cols-2">
+    <label class="grid gap-2 text-sm font-semibold text-white/75">
+     {en ? "Name" : "Nombre"}
+     <input class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white outline-none transition placeholder:text-white/35 focus:border-yellow-200/70 focus:bg-white/10" type="text" name="name" placeholder={en ? "Your name" : "Tu nombre"} required />
+    </label>
+    <label class="grid gap-2 text-sm font-semibold text-white/75">
+     Email
+     <input class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white outline-none transition placeholder:text-white/35 focus:border-yellow-200/70 focus:bg-white/10" type="email" name="email" placeholder="tu@email.com" required />
+    </label>
+   </div>
+
+   <label class="grid gap-2 text-sm font-semibold text-white/75">
+    {en ? "Message" : "Mensaje"}
+    <textarea class="min-h-36 resize-y rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base leading-7 text-white outline-none transition placeholder:text-white/35 focus:border-yellow-200/70 focus:bg-white/10" name="message" placeholder={en ? "Tell me what you need" : "Cuéntame qué necesitas"} required></textarea>
+   </label>
+
+   <div class="mt-2 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+    <p class="text-sm text-white/40">{email}</p>
+    <button type="submit" class="inline-flex w-full items-center justify-center gap-3 rounded-full bg-yellow-200 px-7 py-3.5 font-semibold !text-black transition hover:-translate-y-0.5 hover:bg-yellow-100 sm:w-auto">
+     <Mail class="size-5" />
+     {en ? "Send message" : "Enviar mensaje"}
+    </button>
+   </div>
+  </form>
+ </div>
+</section>
