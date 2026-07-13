@@ -4,8 +4,7 @@ import Mail from "../icons/Mail.astro";
 const { lang = "es" } = Astro.props;
 const en = lang === "en";
 const email = "rafaprogramador17@gmail.com";
-const action = "https://api.web3forms.com/submit";
-const web3FormsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
+const action = `https://formsubmit.co/${email}`;
 const thanksPath = en ? "/en/thanks" : "/gracias";
 const nextUrl = new URL(thanksPath, Astro.url).toString();
 const mailtoHref = `mailto:${email}`;
@@ -21,11 +20,11 @@ const mailtoHref = `mailto:${email}`;
   </div>
 
   <form action={action} method="POST" class="contact-form mt-10 grid gap-4 text-left">
-   <input type="hidden" name="access_key" value={web3FormsAccessKey} />
-   <input type="hidden" name="subject" value={en ? "New portfolio contact" : "Nuevo contacto desde el portfolio"} />
-   <input type="hidden" name="from_name" value="Portfolio Rafa Garcia" />
-   <input type="hidden" name="redirect" value={nextUrl} />
-   <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+<input type="hidden" name="_subject" value={en ? "New portfolio contact" : "Nuevo contacto desde el portfolio"}/>
+<input type="hidden" name="_next" value={nextUrl}/>
+<input type="hidden" name="_captcha" value="false"/>
+<input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off"/>
+<input type="hidden" name="_template" value="table" />
 
    <div class="grid gap-4 sm:grid-cols-2">
     <label class="grid gap-2 text-sm font-semibold text-white/75">

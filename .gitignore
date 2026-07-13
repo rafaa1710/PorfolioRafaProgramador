@@ -21,7 +21,7 @@ astro-dev*.log
 # environment variables
 .env
 .env.*
-!.env.example
+.env.example
 
 # macOS-specific files
 .DS_Store
