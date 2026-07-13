@@ -42,8 +42,8 @@ const mailtoHref = `mailto:${email}`;
     <textarea class="min-h-36 resize-y rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base leading-7 text-white outline-none transition placeholder:text-white/35 focus:border-yellow-200/70 focus:bg-white/10" name="message" placeholder={en ? "Tell me what you need" : "Cuéntame qué necesitas"} required></textarea>
    </label>
 
-   <div class="mt-2 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-    <a class="text-sm text-white/40 transition hover:text-white" href={mailtoHref}>{email}</a>
+   <div class="mt-2 flex justify-end">
+    
     <button type="submit" class="submit-button inline-flex w-full items-center justify-center gap-3 rounded-full bg-yellow-200 px-7 py-3.5 font-semibold !text-black transition hover:-translate-y-0.5 hover:bg-yellow-100 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
      <Mail class="size-5" />
      {en ? "Send message" : "Enviar mensaje"}
