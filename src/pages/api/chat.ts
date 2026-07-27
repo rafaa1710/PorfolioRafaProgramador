@@ -1,28 +1,21 @@
 import type { APIRoute } from "astro";
 import { GoogleGenAI } from "@google/genai";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
 import { systemPrompt } from "../../ai/systemPrompt";
+import about from "../../data/about.md?raw";
+import skills from "../../data/skills.md?raw";
+import trasterush from "../../data/projects/trasterush.md?raw";
+import bdiCompany from "../../data/projects/bdi-company.md?raw";
 export const prerender = false;
 
 const ai = new GoogleGenAI({
   apiKey: import.meta.env.GEMINI_API_KEY,
 });
 
-function readDataFile(path: string) {
-  return readFileSync(join(process.cwd(), path), "utf-8");
-}
-
 export const POST: APIRoute = async ({ request }) => {
   try {
 
     
     const { message } = await request.json();
-
-    const about = readDataFile("src/data/about.md");
-    const skills = readDataFile("src/data/skills.md");
-    const trasterush = readDataFile("src/data/projects/trasterush.md");
-    const bdiCompany = readDataFile("src/data/projects/bdi-company.md");
 
     const context = `
 ${systemPrompt}
