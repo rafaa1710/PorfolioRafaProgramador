@@ -19,10 +19,19 @@ Incluye:
 - Seccion de experiencia profesional.
 - Proyectos destacados con video, galerias e informacion tecnica.
 - Formacion y certificaciones.
-- Enlaces directos a LinkedIn, GitHub y correo.
+- Enlaces directos a LinkedIn, GitHub, Instagram y correo.
+- Asistente virtual AskRafaelAI para consultar información sobre experiencia, habilidades y proyectos.
 - Diseno responsive para escritorio, tablet y movil.
 
 ## Proyectos destacados
+
+### CINELOG
+
+Aplicación web Full Stack para descubrir y gestionar películas y series. Integra la API de TMDB para consultar el catálogo y permite a los usuarios buscar contenido, consultar información detallada y gestionar sus listas personales de favoritos y títulos vistos.
+
+La plataforma incorpora autenticación mediante JWT, protección de rutas, persistencia de datos y un sistema de usuarios y roles con funcionalidades de administración.
+
+**Tecnologías:** Angular, TypeScript, Angular Material, PHP, MySQL, REST API, JWT, TMDB API.
 
 ### BDI Company
 
@@ -55,30 +64,39 @@ Sistema de gestion institucional con modulos conectados para alumnos, formacion,
 ```text
 .
 |-- public/
-|   |-- avatar.png
 |   |-- fotoProg.jpg
 |   |-- result.mp4
+|   |-- bdi-company-2.mp4
+|   |-- cinelog.mp4
 |   `-- ...
 |-- src/
+|   |-- ai/
+|   |   `-- systemPrompt.ts
+|   |-- data/
+|   |   |-- about.md
+|   |   |-- skills.md
+|   |   `-- projects/
+|   |       |-- trasterush.md
+|   |       |-- bdi-company.md
+|   |       `-- cinelog.md
 |   |-- components/
-|   |   |-- Home.astro
-|   |   |-- Project.astro
-|   |   |-- Experience.astro
-|   |   |-- Formacion.astro
-|   |   `-- Contacto.astro
 |   |-- icons/
 |   |-- layouts/
-|   |   `-- Layout.astro
-|   |-- pages/
-|   |   |-- index.astro
-|   |   `-- en/
-|   |       `-- index.astro
-|   `-- styles/
-|       `-- global.css
-|-- astro.config.mjs
-|-- package.json
-`-- tailwind.config.cjs
+|   `-- pages/
+|       |-- api/
+|       |   `-- chat.ts
+|       |-- index.astro
+|       `-- en/
+|           `-- index.astro
 ```
+
+## AskRafaelAI
+
+El portfolio incorpora un asistente virtual basado en inteligencia artificial que permite a los visitantes consultar información sobre mi perfil profesional, experiencia, habilidades y proyectos.
+
+El asistente utiliza contenido estructurado del propio portfolio como contexto para generar respuestas relacionadas con mi trayectoria y trabajos realizados.
+
+**Tecnologías:** Google Gemini API, @google/genai, Astro API Routes y Markdown.
 
 ## Instalacion y uso
 
@@ -120,6 +138,8 @@ npm run preview
 - **Email:** rafaprogramador17@gmail.com
 - **LinkedIn:** [rafael-g-677988153](https://www.linkedin.com/in/rafael-g-677988153/)
 - **GitHub:** [rafaa1710](https://github.com/rafaa1710)
+- **Instagram:** [@rafappcrea](https://www.instagram.com/rafappcrea/)
+- **Portfolio:** [rafappcrea.es](https://rafappcrea.es/)
 
 ## Licencia
 
