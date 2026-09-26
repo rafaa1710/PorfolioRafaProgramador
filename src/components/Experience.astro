@@ -1,0 +1,15 @@
+﻿---
+import Code from "../icons/Code.astro";
+const { lang = "es" } = Astro.props;
+const en = lang === "en";
+const items=en?[
+ {date:"Present",title:"Freelance Developer",company:"Independent projects",description:"I work directly with clients to identify their needs, turn them into clear requirements and develop web solutions tailored to their workflows, such as management panels, forms, process automation and data integrations."},
+ {date:"Dec 2024 — Apr 2025",title:"Full Stack Software Developer (FCT Internship)",company:"Datarush",description:"I built complete applications with Angular and Spring Boot, designed APIs and business logic, modelled MariaDB databases and integrated client, server and hardware in production environments.",link:"#trasterush"},
+ {date:"Jan 2024 — Aug 2024",title:"Web Developer",company:"Personal project",description:"I created dynamic interfaces with reusable components and Tailwind CSS, focusing on accessibility, responsive design and a consistent user experience."}
+]:[
+ {date:"Actualmente",title:"Desarrollador freelance",company:"Proyectos independientes",description:"Trabajo directamente con clientes para detectar sus necesidades, convertirlas en requisitos claros y desarrollar soluciones web adaptadas a sus procesos, como paneles de gestión, formularios, automatizaciones e integraciones de datos."},
+ {date:"Dic 2025 — Abr 2026",title:"Desarrollador de Software Full Stack (Prácticas FCT)",company:"Datarush",description:"Desarrollé aplicaciones completas con Angular y Spring Boot, diseñé APIs y lógica de negocio, modelé bases de datos en MariaDB e integré cliente, servidor y hardware en entornos reales.",link:"#trasterush"},
+ {date:"Ene 2024 — Ago 2024",title:"Desarrollador web",company:"Proyecto personal",description:"Creé interfaces dinámicas con componentes reutilizables y Tailwind CSS, priorizando accesibilidad, diseño responsive y una experiencia de uso consistente."}
+];
+---
+<ol class="grid gap-5">{items.map(item=><li class="glass-card group grid rounded-3xl p-6 sm:grid-cols-[150px_1fr] sm:p-8"><div><span class="text-sm text-white/45">{item.date}</span><div class="mt-5 grid size-11 place-items-center rounded-2xl border border-yellow-200/20 bg-yellow-200/10 text-yellow-200 shadow-lg shadow-yellow-200/5" aria-hidden="true"><Code class="size-5"/></div></div><div class="mt-4 sm:mt-0"><p class="text-sm font-medium text-yellow-200">{item.company}</p><h3 class="mt-1 text-xl font-semibold text-white sm:text-2xl">{item.title}</h3><p class="mt-4 max-w-2xl leading-7 text-white/60">{item.description}</p>{item.link&&<a class="mt-5 inline-flex text-sm font-semibold text-white underline decoration-yellow-200/50 underline-offset-4 hover:decoration-yellow-200" href={item.link}>{en?"View related project →":"Ver proyecto relacionado →"}</a>}</div></li>)}</ol>

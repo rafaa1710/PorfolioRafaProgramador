@@ -1,0 +1,14 @@
+﻿---
+const { lang = "es" } = Astro.props;
+const en = lang === "en";
+const items=en?[
+ {date:"April 2026",title:"Google Cybersecurity Professional Certificate",org:"Google",description:"Data protection, risk management, threat detection and incident response."},
+ {date:"March 2026",title:"Salesforce Administrator & Developer",org:"Salesforce Trailhead",description:"CRM, data modelling, user management, Flow Builder automation and business-oriented development.",link:"https://trailhead.salesforce.com/es-MX/users/vop1arxopazax3jnko/trailmixes/admin-intermediate"},
+ {date:"2024 — 2026",title:"Higher Technician in Multiplatform Application Development",org:"Vocational Education",description:"Java, Python, SQL, Git, backend development, databases and ERP/CRM platform development."}
+]:[
+ {date:"Abril 2026",title:"Certificado Profesional de Ciberseguridad",org:"Google",description:"Protección de datos, gestión de riesgos, detección de amenazas y respuesta ante incidentes."},
+ {date:"Marzo 2026",title:"Salesforce Administrator & Developer",org:"Salesforce Trailhead",description:"CRM, modelado de datos, gestión de usuarios, automatización con Flow Builder y desarrollo orientado a negocio.",link:"https://trailhead.salesforce.com/es-MX/users/vop1arxopazax3jnko/trailmixes/admin-intermediate"},
+ {date:"2024 — 2026",title:"Técnico Superior en Desarrollo de Aplicaciones Multiplataforma",org:"Formación Profesional",description:"Java, Python, SQL, Git, backend, bases de datos y desarrollo de plataformas ERP y CRM."}
+];
+---
+<div class="grid gap-5 md:grid-cols-3">{items.map(item=><article class="glass-card flex h-full flex-col rounded-3xl p-6"><span class="text-xs font-semibold uppercase tracking-wider text-yellow-200">{item.org}</span><h3 class="mt-4 text-xl font-semibold leading-snug text-white">{item.title}</h3><p class="mt-3 text-sm text-white/45">{item.date}</p><p class="mt-5 flex-1 leading-7 text-white/60">{item.description}</p>{item.link&&<a class="mt-6 text-sm font-semibold text-white hover:text-yellow-200" href={item.link} target="_blank" rel="noreferrer">{en?"View credential →":"Ver credencial →"}</a>}</article>)}</div>

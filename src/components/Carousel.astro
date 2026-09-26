@@ -1,0 +1,43 @@
+---
+const images = [
+  "/PorfolioRafaProgramador/foto1.jpg",
+  "/PorfolioRafaProgramador/foto2.jpg",
+  "/PorfolioRafaProgramador/foto3.jpg",
+];
+---
+
+<div class="relative w-full max-w-3xl mx-auto overflow-hidden rounded-2xl">
+  <div class="flex animate-carousel">
+    {images.map((image) => (
+      <img
+        src={image}
+        alt="Imagen del portfolio"
+        class="w-full max-w-[300px] sm:max-w-[450px] lg:max-w-[650px] mx-auto flex-shrink-0 object-cover rounded-2xl"
+      />
+    ))}
+  </div>
+</div>
+
+<style>
+  @keyframes carousel {
+    0%, 25% {
+      transform: translateX(0);
+    }
+
+    33%, 58% {
+      transform: translateX(-100%);
+    }
+
+    66%, 91% {
+      transform: translateX(-200%);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-carousel {
+    animation: carousel 12s infinite;
+  }
+</style>
